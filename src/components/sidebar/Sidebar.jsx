@@ -1,5 +1,5 @@
 import "./sidebar.css";
-import {LineStyle,Timeline,TrendingUp,PersonOutline,Business,AttachMoney,MailOutline,ChatBubbleOutline,Report,DynamicFeed,WorkOutline} from '@mui/icons-material';
+import {LineStyle,Timeline,TrendingUp,PersonAddAlt,Business,AttachMoney,MailOutline,ChatBubbleOutline,Report,DynamicFeed,WorkOutline} from '@mui/icons-material';
 
 export default function Sidebar() {
   return (
@@ -26,8 +26,8 @@ export default function Sidebar() {
                 <h3 className="sidebarTitle">Quick Menu</h3>
                 <ul className="sidebarList">
                     <li className="sidebarListItem ">
-                    <PersonOutline className="sidebarIcon"/>
-                    Users
+                    <PersonAddAlt className="sidebarIcon"/>
+                     Add Users
                     </li>
                     <li className="sidebarListItem">
                         <Business className="sidebarIcon"/>

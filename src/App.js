@@ -1,17 +1,15 @@
-import Sidebar from "./components/sidebar/Sidebar";
-import Topbar from "./components/topbar/Topbar";
-import "./app.css";
-import Home from "./pages/home/Home";
+// import Sidebar from "./components/sidebar/Sidebar";
+// import Topbar from "./components/topbar/Topbar";
+// import Home from "./pages/home/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navigator from "./Navigator";
+// import Login from "./pages/login/Login";
 
 function App() {
   return (
-    <div>
-     <Topbar/>
-     <div className="container">
-      <Sidebar/>
-      <Home/> 
-     </div>
-    </div>
+    <BrowserRouter>
+      <Navigator />
+    </BrowserRouter>
   );
 }
 
