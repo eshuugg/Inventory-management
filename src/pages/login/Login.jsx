@@ -15,7 +15,6 @@ export default function Login() {
 
     const [state, setState] = useState(initialState)
 
-    const { email, password } = state;
 
     const { currentUser } = useSelector(state => state.data);
 
@@ -38,9 +37,11 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const { email, password } = state;
         if (!email || !password) {
             return;
         }
+        console.log(email, password, state)
         dispatch(loginInitiate(state))
         // const newRecord = { ...state}
         // setRecord([...record, newRecord  ])
@@ -49,7 +50,12 @@ export default function Login() {
 
     const handleInput = (e) => {
         let { name, value } = e.target
-        setState({ ...state, [name]: value })
+        setState((prev) => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
     }
 
     return (
@@ -66,7 +72,7 @@ export default function Login() {
                         placeholder='Email Address'
                         name="email"
                         onChange={handleInput}
-                        value={email}
+                        value={state.email}
                     />
                     <input
                         type="password"
@@ -75,7 +81,7 @@ export default function Login() {
                         placeholder="Password"
                         name="password"
                         onChange={handleInput}
-                        vlaue={password}
+                        value={state.password}
                     />
                     <button style={{ alignItems: "center", background: "#2a6bf7" }} className="btn btn-secondary btn-block" type="submit">
                         Log In

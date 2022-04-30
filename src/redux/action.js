@@ -73,15 +73,14 @@ export const addProduct = (state) => {
 };
 
 
-export const loginInitiate = (email, password) => {
+export const loginInitiate = (user) => {
     return function (dispatch) {
         dispatch(loginStart());
         return axios({
             method: 'POST',
             url: API.login,
             data: {
-                email,
-                password
+                ...user
             }
         })
             .then(({ user }) => {
