@@ -10,16 +10,17 @@
 #logreg-forms {
   width: 412px;
   margin: 10vh auto;
-  background-color: #AED6F1;
+  background-color: #6fc1f7;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 #logreg-forms form {
   width: 100%;
   max-width: 410px;
-  padding: 15px;
+  padding: 40px;
   margin: auto;
 }
+
 #logreg-forms .form-control {
   position: relative;
   box-sizing: border-box;
@@ -67,27 +68,13 @@
   margin-top: 30px;
 }
 
-#logreg-forms .facebook-btn {
-  background-color: #3c589c;
-}
-
-#logreg-forms .google-btn {
-  background-color: #df4b3b;
-  margin-right: 5px;
-}
 
 #logreg-forms .form-signup .social-btn {
   width: 210px;
 }
 
-#logreg-forms .form-signup input {
-  margin-bottom: 2px;
-}
 
-.form-signup .social-login {
-  width: 210px !important;
-  margin: 0 auto;
-}
+
 
 /* Mobile */
 

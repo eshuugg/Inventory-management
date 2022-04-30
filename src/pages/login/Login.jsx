@@ -1,89 +1,94 @@
-// import React, { useState, useEffect } from 'react';
-// import {  Link, useNavigate } from "react-router-dom";
-// import { useDispatch,useSelector } from 'react-redux';
-// import { loginInitiate } from '../redux/action';
-// import "./login.css";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginInitiate } from '../../redux/action';
+import "./login.css";
 
 
 
-// export default function Login() {
-//     const [userDetails, setuserDetails] = useState({
-//         email: "",
-//         password: ""
-//     })
-// const [record, setRecord] = useState([])
+export default function Login() {
 
-// const { currentUser } = useSelector(userDetails => userDetails.user);
+    const initialState = {
+        email: "",
+        password: "",
+    }
 
-// const {email,password} = userDetails;
+    const [state, setState] = useState(initialState)
 
-// const navigate = useNavigate();
+    const { email, password } = state;
 
-// useEffect(() => {
-// if (currentUser) {
-//     navigate('/')
-// }
-// }, [currentUser, navigate])
+    const { currentUser } = useSelector(state => state.data);
 
-
-// const dispatch = useDispatch();
+    // console.log(currentUser, "currentUser");
 
 
 
-// const handleSubmit = (e) => {
-// e.preventDefault();
-// if(!email || !password){
-//     return;
-// }
-// dispatch(loginInitiate(email, password))
-// const newRecord = { ...userDetails, id: new Date().getTime().toString() }
-// setRecord([...record, newRecord])
-// setuserDetails({ email: "", password: "" })
-// }
+    const navigate = useNavigate();
 
-// const handleInput = (e) => {
-//         const name = e.target.name;
-//         const value = e.target.value;
-//         setuserDetails({ ...userDetails, [name]: value })
-//     }
+    useEffect(() => {
+        if (currentUser) {
+            navigate('/')
+        }
+    }, [currentUser, navigate])
 
-//   return (
-//     <div>
-//        <div id="logreg-forms" style={{textAlign:"center"}}>
-//            <form className="form-signin "onSubmit={handleSubmit}>
-//                <h1 className='h3 mb-3 font-weight-normal' style={{textAlign:"center"}}>
-//                    Log In
-//                </h1>
-//                <input 
-//                type="email"
-//                id="inputEmail"
-//                className="form-control"
-//                 placeholder='Email Address'
-//                 name="email"
-//                 onChange={handleInput}
-//                 value={userDetails.email}               
-//                />
-//                <input 
-//                type="password"
-//                id="inputPassword"
-//                className="form-control"
-//                 placeholder="Password"
-//                 name="password"
-//                 onChange={handleInput}
-//                 vlaue={userDetails.password}               
-//                />
-//                <button style={{alignItems:"center",background:"#2a6bf7"}} className="btn btn-secondary btn-block" type="submit">
-//                    Log In
-//                </button>
-//                <hr/>
-//                <p>Don't have an account</p>
-//                <Link to="/registration">
-//                <button className="btn btn-primary btn-block"type="button" id="btn-signup">
-//                    <i className="fas fa-user-plus">Sign up New Account</i>
-//                </button>
-//                </Link>
-//            </form>
-//        </div>
-//     </div>
-//   )
-// }
+
+    const dispatch = useDispatch();
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!email || !password) {
+            return;
+        }
+        dispatch(loginInitiate(state))
+        // const newRecord = { ...state}
+        // setRecord([...record, newRecord  ])
+        setState({ email: "", password: "" })
+    }
+
+    const handleInput = (e) => {
+        let { name, value } = e.target
+        setState({ ...state, [name]: value })
+    }
+
+    return (
+        <div>
+            <div id="logreg-forms" style={{ textAlign: "center" }}>
+                <form className="form-signin " onSubmit={handleSubmit}>
+                    <h1 className='h3 mb-3 font-weight-normal' style={{ textAlign: "center" }}>
+                        Log In
+                    </h1>
+                    <input
+                        type="email"
+                        id="inputEmail"
+                        className="form-control"
+                        placeholder='Email Address'
+                        name="email"
+                        onChange={handleInput}
+                        value={email}
+                    />
+                    <input
+                        type="password"
+                        id="inputPassword"
+                        className="form-control"
+                        placeholder="Password"
+                        name="password"
+                        onChange={handleInput}
+                        vlaue={password}
+                    />
+                    <button style={{ alignItems: "center", background: "#2a6bf7" }} className="btn btn-secondary btn-block" type="submit">
+                        Log In
+                    </button>
+                    {/* <hr /> */}
+                    {/* <p>Don't have an account</p> */}
+                    {/* <Link to="/registration">
+                        <button className="btn btn-primary btn-block" type="button" id="btn-signup">
+                            <i className="fas fa-user-plus">Sign up New Account</i>
+                        </button>
+                    </Link> */}
+                </form>
+            </div>
+        </div>
+    )
+}
