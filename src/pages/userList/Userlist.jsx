@@ -3,22 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getcompanyUsers } from '../../redux/action';
 
 
-
-
-
-
 const Userlist = () => {
 
     const dispatch = useDispatch();
 
-    const { users } = useSelector(state => state.data)
+        const { users } = useSelector(state => state.data)
+
 
     useEffect(() => {
         dispatch(getcompanyUsers())
     }, [])
+
     return (
         <div>
-            <table class="table table-hover">
+            <table className="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">User Id</th>
@@ -26,9 +24,9 @@ const Userlist = () => {
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
                     </tr>
-                </thead>
+                </thead >
                 {users && users.user && users.user.map((item, index) => (
-                    <tbody>
+                    <tbody style={{cursor:'pointer'}} >
                         <tr>
                             <th scope="row">{index+1}</th>
                             <td>{item.user_name}</td>

@@ -1,4 +1,3 @@
-// export const  GET_PRODUCTS = "GET_PRODUCTS";
 export const  ADD_PRODUCT = "ADD_PRODUCT";
 
 
@@ -8,3 +7,6 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 
 
 export const  GET_USERS = "GET_USERS";
+export const  GET_PRODUCTS = "GET_PRODUCTS";
+export const  GET_PRODUCTDETAILS = "GET_PRODUCTDETAILS";
+

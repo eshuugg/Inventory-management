@@ -3,6 +3,7 @@ import * as types from "./actionTypes";
 const initialState = {
     users: [],
     user: {},
+    products: [],
     loading: false,
     error: null
 }
@@ -10,12 +11,6 @@ const initialState = {
 
 const usersReducers = (state = initialState, action) => {
     switch (action.type) {
-        // case types.GET_PRODUCTS:
-        //     return {
-        //         ...state,
-        //         users: action.payload,
-        //         loading: false,
-        //     };
 
         case types.ADD_PRODUCT:
             return {
@@ -44,6 +39,18 @@ const usersReducers = (state = initialState, action) => {
                 ...state,
                 users: action.payload,
                 loading: false
+            };
+        case types.GET_PRODUCTS:
+            return {
+                ...state,
+                product: action.payload,
+                loading: false,
+            };
+        case types.GET_PRODUCTDETAILS:
+            return {
+                ...state,
+                products: action.payload,
+                loading: true,
             };
         default:
             return state

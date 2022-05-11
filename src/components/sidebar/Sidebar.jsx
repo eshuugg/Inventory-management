@@ -9,7 +9,7 @@ export default function Sidebar() {
                 <div className="sidebarMenu">
                     <h3 className="sidebarTitle">Dashboard</h3>
                     <ul className="sidebarList">
-                        <Link to="/home">
+                        <Link to="/">
                             <li className="sidebarListItem active">
                                 <LineStyle className="sidebarIcon" />
                                 Home
@@ -34,10 +34,12 @@ export default function Sidebar() {
                                 Add Product
                             </li>
                         </Link>
-                        <li className="sidebarListItem">
-                            <Business className="sidebarIcon" />
-                            Products
-                        </li>
+                        <Link to="/products">
+                            <li className="sidebarListItem">
+                                <Business className="sidebarIcon" />
+                                Products
+                            </li>
+                        </Link>
                         <Link to="/userList">
                             <li className="sidebarListItem">
                                 <AttachMoney className="sidebarIcon" />

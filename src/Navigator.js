@@ -1,11 +1,13 @@
 import React from 'react'
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/home/Home";
 import AddProduct from './pages/addProduct/AddProduct'
-import ListOfAllInventory from './pages/listOfProduct/ListOfProducts';
 import Userlist from './pages/userList/Userlist';
 import Login from './pages/login/Login';
+import ListOfProducts from './pages/listOfProduct/ListOfProducts';
+import ProductDetails from './pages/productDetails/ProductDetails';
+
 
 
 export default function Navigator() {
@@ -13,10 +15,11 @@ export default function Navigator() {
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path='' element={<Layout />}>
-                <Route index path="/home" element={<Home />} />
+                <Route exact path="/" element={<Home />} />
                 <Route path="/addProduct" element={<AddProduct />} />
-                <Route path="/listOfAllInventory" element={<ListOfAllInventory />} />
+                <Route path="/products" element={<ListOfProducts />} />
                 <Route path="/userlist" element={<Userlist />} />
+                <Route path="/product/details/:id" element={<ProductDetails />} />
             </Route>
         </Routes>
     )

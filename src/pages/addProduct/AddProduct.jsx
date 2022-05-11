@@ -10,7 +10,7 @@ export default function AddUser() {
     productName: "",
     productType: "",
     quantity: "",
-    name: "",
+    supplierName: "",
     supplyDate: "",
     rate: "",
     tax: "",
@@ -46,10 +46,9 @@ export default function AddUser() {
 
   return (
     <>
-      <div className="addInventory" >
-        <div className="row justify-content-center mt-5 py-5 pt-0">
-          <h2>Add Product</h2>
-          <hr className="" />
+      <div className="addInventory" style={{border:'2px solid black', borderRadius:'5px'}}>
+        <div className="row justify-content-center mt-5 py-5 pt-0" style={{marginLeft:"15px" ,fontSize:"15px"}}>
+          <h2 style={{marginLeft:'10px'}}>Add Product</h2>
           <div className="col-12" style={{ overflowX: "hidden" }}>
             <div className="row w-100">
               <div className="col-9 mt-4">

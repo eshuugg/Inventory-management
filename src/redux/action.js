@@ -2,10 +2,10 @@ import * as types from "./actionTypes";
 import * as API from '../config/apiUrls'
 import axios from "axios";
 
-// const getProducts = () => ({
-//     type: types.GET_PRODUCTS,
-//     payload: 
-// });
+const getProducts = (product) => ({
+    type: types.GET_PRODUCTS,
+    payload: product,
+});
 
 const productAdd = () => ({
     type: types.ADD_PRODUCT,
@@ -29,17 +29,11 @@ const getUserList = (users) => ({
     type: types.GET_USERS,
     payload: users,
 });
+const getProductDetails = (product) => ({
+    type: types.GET_PRODUCTDETAILS,
+    payload: product,
+});
 
-// export const listProducts = () => {
-//     return function (dispatch) {
-//         axios
-//             .get(`${API.listOfAllProducts}`)
-//             .then((resp) => {
-//                 console.log(resp, "resp");
-//                 dispatch(getProducts(resp.data))
-//             }).catch((error) => console.log(error));
-//     };
-// };
 
 export const addProduct = (state) => {
     return function (dispatch) {
@@ -55,7 +49,7 @@ export const addProduct = (state) => {
                 },
                 "supplier": {
                     "quantity": state.quantity,
-                    "sypplierName": state.sypplierName,
+                    "supplierName": state.supplierName,
                     "supplyDate": state.supplyDate,
                     "rate": state.rate,
                     "tax": state.tax,
@@ -82,9 +76,11 @@ export const loginInitiate = (user) => {
             data: {
                 ...user
             }
+
         })
-            .then(({ user }) => {
-                dispatch(loginSuccess(user));
+            .then((res) => {
+                localStorage.setItem("currentCompanyId", res.data.company_id)
+                dispatch(loginSuccess(res.data));
             })
             .catch((error) => dispatch(loginFail(error.message)));
     };
@@ -92,15 +88,44 @@ export const loginInitiate = (user) => {
 
 export const getcompanyUsers = (id) => {
     return function (dispatch) {
-        dispatch(loginStart());
         return axios({
             method: 'GET',
-            url: API.userList(1),
+            url: API.userList(localStorage.getItem("currentCompanyId")),
         })
             .then((res) => {
-                console.log(res)
                 dispatch(getUserList(res.data));
             })
             .catch((error) => dispatch(loginFail(error.message)));
     };
 };
+
+
+export const getCompanyProducts = (id) => {
+    return function (dispatch) {
+        return axios({
+            method: 'GET',
+            url: API.productList(localStorage.getItem("currentCompanyId"))
+        })
+
+            .then((resp) => {
+                dispatch(getProducts(resp.data))
+            }).catch((error) => console.log(error));
+    };
+};
+
+export const productDetails = (id) => {
+    return function (dispatch) {
+        return axios({
+            method: 'GET',
+            url: API.
+                productDetails(id.id, localStorage.getItem("currentCompanyId"))
+        })
+
+            .then((resp) => {
+                // localStorage.setItem("productId", resp.data.product_id)
+                dispatch(getProductDetails(resp.data))
+            }).catch((error) => console.log(error));
+    };
+};
+
+
